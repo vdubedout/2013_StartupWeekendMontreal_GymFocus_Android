@@ -125,7 +125,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		supportFragmentManager.beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
 		mleftDrawerList.setItemChecked(position, true);
-		setTitle(mMenuList[position]);
+		setTitle(mMenuList[position].toUpperCase());
 		mDrawerLayout.closeDrawer(mleftDrawerList);
 	}
 

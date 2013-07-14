@@ -34,8 +34,8 @@ public final class MainActivity_
     }
 
     private void afterSetContentView_() {
-        mDrawerLayout = ((DrawerLayout) findViewById(id.drawer_layout));
         mleftDrawerList = ((ListView) findViewById(id.left_drawer));
+        mDrawerLayout = ((DrawerLayout) findViewById(id.drawer_layout));
         afterViews();
     }
 

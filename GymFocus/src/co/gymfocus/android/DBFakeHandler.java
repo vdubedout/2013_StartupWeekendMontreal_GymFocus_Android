@@ -45,7 +45,7 @@ public class DBFakeHandler {
 		workout.id = 1;
 		workout.name = "Core";
 		workout.description = " - Do 20 Sit ups";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "10 min.";
 		workouts.add(workout);
 
 		// Workouts 2
