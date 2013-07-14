@@ -1,6 +1,10 @@
 package co.gymfocus.android.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import co.gymfocus.android.DBFakeHandler;
 import co.gymfocus.android.R;
+import co.gymfocus.android.Workout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -20,6 +26,8 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 	private EditText mUserComment;
 	boolean mBadButtonActivated = false;
 	boolean mGoodButtonActivated = false;
+	Button mSendButton;
+	private View mInflatedView;
 	
 	public void setWorkout(Workout workout) {
 		this.mWorkout = workout;
@@ -28,10 +36,61 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View mInflatedView = inflater.inflate(
+		mInflatedView = inflater.inflate(
 				R.layout.fragment_workout_rapport, container, false);
+		mUserComment = (EditText) mInflatedView
+				.findViewById(R.id.rapport_commentuser);
 		setVoteButtons(mInflatedView);
+		setSendButton(mInflatedView);
 		return mInflatedView;
+	}
+
+	private void setSendButton(View mInflatedView) {
+		mSendButton = (Button) mInflatedView.findViewById(R.id.rapport_sendbutton);
+		mSendButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setSendDataButton();
+			}
+
+		});
+	}
+
+	private void setSendDataButton() {
+		// TODO Send data, clean backstack
+		setDataInDB();
+		sendDataToServer();
+		returnOnWorkoutList();
+	}
+
+	private void returnOnWorkoutList() {
+		FragmentManager fragManager = getActivity().getSupportFragmentManager();
+		fragManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		FragmentTransaction transaction = fragManager.beginTransaction();
+		transaction.replace(R.id.content_frame, new FragmentWorkouts());
+		
+	}
+
+	private void sendDataToServer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setDataInDB() {
+		if(mBadButtonActivated)
+			mWorkout.likedIt = false;
+		else if(mGoodButtonActivated)
+			mWorkout.likedIt = true;
+		
+		if(!TextUtils.isEmpty(mUserComment.getText())){
+			mWorkout.workoutComment = mUserComment.getText().toString();
+		}
+		
+		mWorkout.isDone = true;
+		
+		DBFakeHandler.getInstance().modifyWorkout(mWorkout);
+		
 	}
 
 	private void setVoteButtons(View mInflatedView) {

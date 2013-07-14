@@ -13,6 +13,14 @@
         android:text="20 fucking squats"
         android:gravity="center_vertical" />
 
+    <TextView android:id="@+id/adapter_workout_status"
+        android:text="@string/workoutstate_todo"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:paddingRight="20dp"
+         />
+    
     <TextView
         android:id="@+id/adapter_workout_duration"
         android:layout_width="wrap_content"
@@ -20,5 +28,5 @@
         android:layout_weight="0"
         android:text="10 min"
         android:gravity="center_vertical" />
-
+    
 </LinearLayout>

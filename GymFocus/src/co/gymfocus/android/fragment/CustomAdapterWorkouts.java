@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import co.gymfocus.android.R;
+import co.gymfocus.android.Workout;
 
 public class CustomAdapterWorkouts extends BaseAdapter {
 	private final Context mContext;
@@ -47,12 +48,21 @@ public class CustomAdapterWorkouts extends BaseAdapter {
 			mHolder = new Holder();
 			mHolder.workout_name = (TextView) convertView.findViewById(R.id.adapter_workout_name);
 			mHolder.workout_duration = (TextView) convertView.findViewById(R.id.adapter_workout_duration);
+			mHolder.workout_status = (TextView) convertView.findViewById(R.id.adapter_workout_status);
 			convertView.setTag(mHolder);
 		} else {
 			mHolder = (Holder) convertView.getTag();
 		}
-		mHolder.workout_duration.setText(mWorkoutListData.get(position).duration);
-		mHolder.workout_name.setText(mWorkoutListData.get(position).name);
+		Workout work = mWorkoutListData.get(position);
+		mHolder.workout_duration.setText(work.duration);
+		mHolder.workout_name.setText(work.name);
+		if(work.isDone){
+			mHolder.workout_status.setText(R.string.workoutstate_done);
+			mHolder.workout_status.setTextColor(mContext.getResources().getColor(R.color.green_dark));
+		} else {
+			mHolder.workout_status.setText(R.string.workoutstate_todo);
+			mHolder.workout_status.setTextColor(mContext.getResources().getColor(android.R.color.black));
+		}
 		
 		return convertView;
 	}
@@ -60,5 +70,6 @@ public class CustomAdapterWorkouts extends BaseAdapter {
 	static class Holder {
 		TextView workout_duration;
 		TextView workout_name;
+		TextView workout_status;
 	}
 }

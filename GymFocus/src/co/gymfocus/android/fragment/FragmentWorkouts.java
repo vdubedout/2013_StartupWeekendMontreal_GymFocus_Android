@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import co.gymfocus.android.DBFakeHandler;
 import co.gymfocus.android.R;
+import co.gymfocus.android.Workout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.googlecode.androidannotations.annotations.EFragment;
@@ -32,7 +34,7 @@ public class FragmentWorkouts extends SherlockFragment {
 				container, false);
 		mList = (ListView) mInflatedView.findViewById(android.R.id.list);
 
-		mWorkouts = getWorkoutsList();
+		mWorkouts = DBFakeHandler.getInstance().getWorkouts(false);
 		mList.setAdapter(new CustomAdapterWorkouts(getActivity(), mWorkouts));
 		mList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -50,19 +52,6 @@ public class FragmentWorkouts extends SherlockFragment {
 			}
 		});
 		return mInflatedView;
-	}
-
-	private ArrayList<Workout> getWorkoutsList() {
-		ArrayList<Workout> workouts = new ArrayList<Workout>();
-		for (int i = 0; i < 10; i++) {
-			Workout workout = new Workout();
-			workout.name = "20 squats";
-			workout.description = "You have to do a squat like this blalalalalalalalala";
-			workout.duration = "5 minutes";
-			workouts.add(workout);
-		}
-
-		return workouts;
 	}
 
 	@Override

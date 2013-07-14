@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import co.gymfocus.android.R;
+import co.gymfocus.android.Workout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
