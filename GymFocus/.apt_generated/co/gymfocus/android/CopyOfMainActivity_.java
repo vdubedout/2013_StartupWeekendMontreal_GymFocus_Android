@@ -9,18 +9,23 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.ListView;
 import co.gymfocus.android.R.id;
 import co.gymfocus.android.R.layout;
+import co.gymfocus.android.rest.RestClient_;
+import com.googlecode.androidannotations.api.BackgroundExecutor;
 import com.googlecode.androidannotations.api.SdkVersionHelper;
 
-public final class MainActivity_
-    extends MainActivity
+public final class CopyOfMainActivity_
+    extends CopyOfMainActivity
 {
 
+    private Handler handler_ = new Handler();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,11 @@ public final class MainActivity_
     }
 
     private void init_(Bundle savedInstanceState) {
+        restClient = new RestClient_();
     }
 
     private void afterSetContentView_() {
-        leftDrawer = ((ListView) findViewById(id.left_drawer));
+        pager = ((ViewPager) findViewById(id.pager));
         afterViews();
     }
 
@@ -63,8 +69,44 @@ public final class MainActivity_
         return super.onKeyDown(keyCode, event);
     }
 
-    public static MainActivity_.IntentBuilder_ intent(Context context) {
-        return new MainActivity_.IntentBuilder_(context);
+    public static CopyOfMainActivity_.IntentBuilder_ intent(Context context) {
+        return new CopyOfMainActivity_.IntentBuilder_(context);
+    }
+
+    @Override
+    public void doSomethingElseOnUiThread() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                try {
+                    CopyOfMainActivity_.super.doSomethingElseOnUiThread();
+                } catch (RuntimeException e) {
+                    Log.e("CopyOfMainActivity_", "A runtime exception was thrown while executing code in a runnable", e);
+                }
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void doSomethingInBackground() {
+        BackgroundExecutor.execute(new Runnable() {
+
+
+            @Override
+            public void run() {
+                try {
+                    CopyOfMainActivity_.super.doSomethingInBackground();
+                } catch (RuntimeException e) {
+                    Log.e("CopyOfMainActivity_", "A runtime exception was thrown while executing code in a runnable", e);
+                }
+            }
+
+        }
+        );
     }
 
     public static class IntentBuilder_ {
@@ -74,14 +116,14 @@ public final class MainActivity_
 
         public IntentBuilder_(Context context) {
             context_ = context;
-            intent_ = new Intent(context, MainActivity_.class);
+            intent_ = new Intent(context, CopyOfMainActivity_.class);
         }
 
         public Intent get() {
             return intent_;
         }
 
-        public MainActivity_.IntentBuilder_ flags(int flags) {
+        public CopyOfMainActivity_.IntentBuilder_ flags(int flags) {
             intent_.setFlags(flags);
             return this;
         }
