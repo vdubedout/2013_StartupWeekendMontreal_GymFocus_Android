@@ -22,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <service 
+            android:name="ServiceWorkoutPost"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/service_post_label"
+            ></service>
     </application>
 
 </manifest>
