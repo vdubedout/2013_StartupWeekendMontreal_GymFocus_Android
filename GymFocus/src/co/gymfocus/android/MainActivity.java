@@ -1,12 +1,13 @@
 package co.gymfocus.android;
 
+import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -17,6 +18,7 @@ import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
@@ -46,12 +48,14 @@ public class MainActivity extends SherlockFragmentActivity implements
 		mleftDrawerList.setAdapter(new ArrayAdapter<String>(this,
 				R.layout.drawer_list_item, mMenuList));
 		mleftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-		mDrawerToggle = new ActionBarDrawerToggle(this, 
-				mDrawerLayout, 
-				drawerImageRes, 
-				openDrawerContentDescRes, 
-				closeDrawerContentDescRes);
-		
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close);
+		mDrawerToggle.syncState();
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
+
 	}
 
 	private void configureActionBar() {
@@ -131,4 +135,34 @@ public class MainActivity extends SherlockFragmentActivity implements
 			return new FragmentWorkouts();
 		}
 	}
+
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		// Sync the toggle state after onRestoreInstanceState has occurred.
+		mDrawerToggle.syncState();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			if (mDrawerLayout.isDrawerOpen(mleftDrawerList)) {
+				mDrawerLayout.closeDrawer(mleftDrawerList);
+			} else {
+				mDrawerLayout.openDrawer(mleftDrawerList);
+			}
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
+
+	}
+
 }

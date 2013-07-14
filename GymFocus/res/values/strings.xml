@@ -8,4 +8,7 @@
 	<string name="menulist_schedules">Schedules</string>
 	<string name="menulist_messages">Messages</string>
 	<string name="menulist_accounts">Accounts</string>
+	
+	<string name="drawer_open">Open</string>
+	<string name="drawer_close">Close</string>
 </resources>
