@@ -54,7 +54,7 @@ public class CustomAdapterWorkouts extends BaseAdapter {
 			mHolder = (Holder) convertView.getTag();
 		}
 		Workout work = mWorkoutListData.get(position);
-		mHolder.workout_duration.setText(work.duration);
+		mHolder.workout_duration.setText(work.durationEstimated);
 		mHolder.workout_name.setText(work.name);
 		if(work.isDone){
 			mHolder.workout_status.setText(R.string.workoutstate_done);
