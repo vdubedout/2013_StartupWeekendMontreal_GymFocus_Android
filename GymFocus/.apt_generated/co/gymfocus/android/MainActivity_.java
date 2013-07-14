@@ -33,7 +33,7 @@ public final class MainActivity_
     }
 
     private void afterSetContentView_() {
-        leftDrawer = ((ListView) findViewById(id.left_drawer));
+        mleftDrawerList = ((ListView) findViewById(id.left_drawer));
         afterViews();
     }
 
