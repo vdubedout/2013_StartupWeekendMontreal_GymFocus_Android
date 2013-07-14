@@ -3,6 +3,7 @@ package co.gymfocus.android.fragment;
 import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -43,10 +44,15 @@ public class FragmentWorkouts extends SherlockFragment {
 					int position, long id) {
 				FragmentTransaction transaction = getActivity()
 						.getSupportFragmentManager().beginTransaction();
-				FragmentWorkoutDetail fragmentWorkoutDetail = new FragmentWorkoutDetail();
-				fragmentWorkoutDetail.setWorkout(mWorkouts.get(position));
-				transaction.replace(R.id.content_frame,
-						fragmentWorkoutDetail);
+
+				IFragmentWorkout fragment;
+				if (mWorkouts.get(position).isDone) {
+					fragment = new FragmentWorkoutRapport();
+				} else {
+					fragment = new FragmentWorkoutDetail();
+				}
+				fragment.setWorkout(mWorkouts.get(position));
+				transaction.replace(R.id.content_frame, (Fragment) fragment);
 				transaction.addToBackStack(null);
 				transaction.commit();
 			}

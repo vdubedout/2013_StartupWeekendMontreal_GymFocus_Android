@@ -26,11 +26,11 @@ import co.gymfocus.android.R;
 import co.gymfocus.android.Workout;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.googlecode.androidannotations.annotations.Background;
 import com.googlecode.androidannotations.annotations.EFragment;
 
 @EFragment
-public class FragmentWorkoutRapport extends SherlockFragment {
+public class FragmentWorkoutRapport extends SherlockFragment implements
+		IFragmentWorkout {
 
 	private Workout mWorkout;
 	ImageView mButtonBad;
@@ -40,7 +40,8 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 	boolean mGoodButtonActivated = false;
 	Button mSendButton;
 	private View mInflatedView;
-	
+	private boolean alreadyPushed;
+
 	public void setWorkout(Workout workout) {
 		this.mWorkout = workout;
 	}
@@ -48,19 +49,42 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		mInflatedView = inflater.inflate(
-				R.layout.fragment_workout_rapport, container, false);
+		mInflatedView = inflater.inflate(R.layout.fragment_workout_rapport,
+				container, false);
 		mUserComment = (EditText) mInflatedView
 				.findViewById(R.id.rapport_commentuser);
 		setVoteButtons(mInflatedView);
 		setSendButton(mInflatedView);
+
+		initializeData(mInflatedView);
 		return mInflatedView;
 	}
 
+	private void initializeData(View mInflatedView2) {
+		if (mWorkout != null && mWorkout.isDone) {
+			if (mWorkout.likedIt != null && mWorkout.likedIt == (true)) {
+				mButtonGood.setImageResource(R.drawable.results_good_presse);
+				mBadButtonActivated = false;
+				mGoodButtonActivated = true;
+			} else {
+				mButtonBad.setImageResource(R.drawable.results_bad_presse);
+				mBadButtonActivated = true;
+				mGoodButtonActivated = false;
+			}
+
+			if (!TextUtils.isEmpty(mWorkout.workoutComment)) {
+				mUserComment.setText(mWorkout.workoutComment);
+			}
+
+			alreadyPushed = true;
+		}
+	}
+
 	private void setSendButton(View mInflatedView) {
-		mSendButton = (Button) mInflatedView.findViewById(R.id.rapport_sendbutton);
+		mSendButton = (Button) mInflatedView
+				.findViewById(R.id.rapport_sendbutton);
 		mSendButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				setSendDataButton();
@@ -72,48 +96,60 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 	private void setSendDataButton() {
 		// TODO Send data, clean backstack
 		setDataInDB();
-		sendDataToServer();
+		if (!alreadyPushed)
+			sendDataToServer();
 		returnOnWorkoutList();
 	}
 
 	private void returnOnWorkoutList() {
 		FragmentManager fragManager = getActivity().getSupportFragmentManager();
-		fragManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		fragManager
+				.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		FragmentTransaction transaction = fragManager.beginTransaction();
 		transaction.replace(R.id.content_frame, new FragmentWorkouts());
 		transaction.commit();
 	}
-	
+
 	void sendDataToServer() {
 		final Handler mHandler = new Handler();
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				String serverPath = mInflatedView.getContext().getString(R.string.serverpath) + "workoutdone";
+				String serverPath = mInflatedView.getContext().getString(
+						R.string.serverpath)
+						+ "workoutdone";
 				URL url;
 				HttpURLConnection conn;
-				
+
 				try {
 					url = new URL(serverPath);
-					
-					String param="userid=" + URLEncoder.encode("BobJoe","UTF-8");
-					if(!TextUtils.isEmpty(mWorkout.name))
-							param += "&name="+URLEncoder.encode(mWorkout.name,"UTF-8");
-					if(!TextUtils.isEmpty(mWorkout.workoutComment))
-						param += "&workoutcomment="+URLEncoder.encode(mWorkout.workoutComment,"UTF-8");
-					if(!TextUtils.isEmpty(String.valueOf(mWorkout.likedIt)))
-							param +="&likeedit="+URLEncoder.encode(String.valueOf(mWorkout.likedIt),"UTF-8");
-					
+
+					String param = "userid="
+							+ URLEncoder.encode("NicolasMarcotte", "UTF-8");
+					if (!TextUtils.isEmpty(mWorkout.name))
+						param += "&name="
+								+ URLEncoder.encode(mWorkout.name, "UTF-8");
+					if (!TextUtils.isEmpty(mWorkout.workoutComment))
+						param += "&workoutcomment="
+								+ URLEncoder.encode(mWorkout.workoutComment,
+										"UTF-8");
+					if (!TextUtils.isEmpty(String.valueOf(mWorkout.likedIt)))
+						param += "&likeedit="
+								+ URLEncoder.encode(
+										String.valueOf(mWorkout.likedIt),
+										"UTF-8");
+
 					conn = (HttpURLConnection) url.openConnection();
 					conn.setDoOutput(true);
 					conn.setRequestMethod("POST");
 					conn.setFixedLengthStreamingMode(param.getBytes().length);
-					conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+					conn.setRequestProperty("Content-Type",
+							"application/x-www-form-urlencoded");
 					PrintWriter out = new PrintWriter(conn.getOutputStream());
 					out.print(param);
 					out.close();
-					
+
 					String response = "";
 					Scanner inStream = new Scanner(conn.getInputStream());
 					while (inStream.hasNextLine()) {
@@ -124,15 +160,19 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							Toast.makeText(mInflatedView.getContext(), "Error Mal"+e.getMessage(), Toast.LENGTH_SHORT).show();
+							Toast.makeText(mInflatedView.getContext(),
+									"Error Mal" + e.getMessage(),
+									Toast.LENGTH_SHORT).show();
 						}
 					});
-				} catch (final IOException e){
+				} catch (final IOException e) {
 					mHandler.post(new Runnable() {
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							Toast.makeText(mInflatedView.getContext(), "Error IO "+e.getMessage(), Toast.LENGTH_SHORT).show();
+							Toast.makeText(mInflatedView.getContext(),
+									"Error IO " + e.getMessage(),
+									Toast.LENGTH_SHORT).show();
 						}
 					});
 				}
@@ -141,19 +181,19 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 	}
 
 	private void setDataInDB() {
-		if(mBadButtonActivated)
+		if (mBadButtonActivated)
 			mWorkout.likedIt = false;
-		else if(mGoodButtonActivated)
+		else if (mGoodButtonActivated)
 			mWorkout.likedIt = true;
-		
-		if(!TextUtils.isEmpty(mUserComment.getText())){
+
+		if (!TextUtils.isEmpty(mUserComment.getText())) {
 			mWorkout.workoutComment = mUserComment.getText().toString();
 		}
-		
+
 		mWorkout.isDone = true;
-		
+
 		DBFakeHandler.getInstance().modifyWorkout(mWorkout);
-		
+
 	}
 
 	private void setVoteButtons(View mInflatedView) {
@@ -170,7 +210,8 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 					mBadButtonActivated = true;
 					mGoodButtonActivated = false;
 					mButtonBad.setImageResource(R.drawable.results_bad_presse);
-					mButtonGood.setImageResource(R.drawable.results_good_normal);
+					mButtonGood
+							.setImageResource(R.drawable.results_good_normal);
 				}
 			}
 		});
@@ -179,13 +220,15 @@ public class FragmentWorkoutRapport extends SherlockFragment {
 
 			@Override
 			public void onClick(View v) {
-				if (mGoodButtonActivated){
-					mButtonGood.setImageResource(R.drawable.results_good_normal);
+				if (mGoodButtonActivated) {
+					mButtonGood
+							.setImageResource(R.drawable.results_good_normal);
 					mGoodButtonActivated = false;
 				} else {
 					mGoodButtonActivated = true;
 					mBadButtonActivated = false;
-					mButtonGood.setImageResource(R.drawable.results_good_presse);
+					mButtonGood
+							.setImageResource(R.drawable.results_good_presse);
 					mButtonBad.setImageResource(R.drawable.results_bad_normal);
 				}
 			}

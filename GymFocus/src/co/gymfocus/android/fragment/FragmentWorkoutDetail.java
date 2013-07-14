@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import co.gymfocus.android.R;
 import co.gymfocus.android.Workout;
 
@@ -15,7 +16,7 @@ import com.googlecode.androidannotations.annotations.EFragment;
 import com.googlecode.androidannotations.annotations.ViewById;
 
 @EFragment
-public class FragmentWorkoutDetail extends SherlockFragment {
+public class FragmentWorkoutDetail extends SherlockFragment implements IFragmentWorkout {
 	private View mInflatedView;
 	private Workout mWorkout;
 
@@ -38,7 +39,18 @@ public class FragmentWorkoutDetail extends SherlockFragment {
 				startButtonClicked();
 			}
 		});
+		
+		setDataWorkout();
 		return mInflatedView;
+	}
+
+	private void setDataWorkout() {
+		TextView tvExercice = (TextView) mInflatedView.findViewById(R.id.workout_detail_exercicevalue);
+		tvExercice.setText(mWorkout.name);
+		TextView tvTime = (TextView) mInflatedView.findViewById(R.id.workout_detail_estimatedtimevalue);
+		tvTime.setText(mWorkout.durationEstimated);
+		TextView tvDescription = (TextView) mInflatedView.findViewById(R.id.workout_detail_description);
+		tvDescription.setText(mWorkout.description);
 	}
 
 	void startButtonClicked(){

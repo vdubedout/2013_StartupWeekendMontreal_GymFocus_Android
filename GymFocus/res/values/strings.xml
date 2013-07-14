@@ -10,9 +10,9 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="fragment_workouts_list_title">Today\'s Workouts list</string>
-    <string name="fauxtexte_long">		- Sit on the floor with your knees bent and both arms extended straight out in front.\n
-		- Lean back slightly, making sure you keep those tummy muscles pulled in.\n
-		- Holding this position, open one arm out to the side, hold, then bring arm back.\n
+    <string name="fauxtexte_long">		- Sit on the floor with your knees bent and both arms extended straight out in front.\n\n
+		- Lean back slightly, making sure you keep those tummy muscles pulled in.\n\n
+		- Holding this position, open one arm out to the side, hold, then bring arm back.\n\n
 		- Open the other arm, at all times keeping tummy muscles tight.</string>
     <string name="timer_endsession">End Session</string>
     <string name="workoutstate_done">Done</string>

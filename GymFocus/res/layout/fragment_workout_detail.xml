@@ -12,11 +12,14 @@
         android:layout_alignParentTop="true"
         android:background="@color/green_dark"
         android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="Exercice : " />
+        android:paddingLeft="12dp"
+        android:paddingTop="12dp"
+        android:text="Exercice : "
+        android:textColor="#eee"
+        android:textSize="17dp" />
 
     <TextView
+        android:id="@+id/workout_detail_exercicevalue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/workout_detail_exercicelabel"
@@ -25,8 +28,11 @@
         android:layout_toRightOf="@+id/workout_detail_exercicelabel"
         android:background="@color/green_dark"
         android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="16 reps" />
+        android:paddingTop="12dp"
+        android:text="16 reps"
+        android:textColor="#eee"
+        android:textSize="17dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/workout_detail_estimatedtimelabel"
@@ -36,33 +42,40 @@
         android:layout_below="@+id/workout_detail_exercicelabel"
         android:background="@color/green_dark"
         android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:text="Estimated time : " />
+        android:paddingLeft="12dp"
+        android:text="Estimated time : "
+        android:textColor="#eee"
+        android:textSize="17dp" />
 
     <TextView
+        android:id="@+id/workout_detail_estimatedtimevalue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/workout_detail_exercicelabel"
         android:layout_toRightOf="@+id/workout_detail_estimatedtimelabel"
         android:background="@color/green_dark"
         android:paddingBottom="10dp"
-        android:text="7 min." />
+        android:text="7 min."
+        android:textColor="#eee"
+        android:textSize="17dp"
+        android:textStyle="bold" />
 
-    <Button 
+    <Button
         android:id="@+id/workout_detail_startbutton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Start"
-        android:layout_height="wrap_content"
-        android:layout_width="100dp"/>
+        android:text="Start" />
+
     <LinearLayout
+        android:id="@+id/workout_detail_linear"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_above="@+id/workout_detail_startbutton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:orientation="horizontal"
-        android:id="@+id/workout_detail_linear"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" >
 
@@ -70,10 +83,11 @@
             android:id="@+id/workout_detail_image0"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/details_photo"
             android:layout_weight="1"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
-        <ImageView
+        <!-- <ImageView
             android:id="@+id/workout_detail_image1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -85,21 +99,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:visibility="invisible" />
+            android:visibility="invisible" />  -->
     </LinearLayout>
 
     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/workout_detail_linear"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/workout_detail_estimatedtimelabel"
-        android:layout_above="@+id/workout_detail_linear"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" >
-        <TextView android:id="@+id/workout_detail_description"
-            android:layout_height="match_parent"
+        android:layout_below="@+id/workout_detail_estimatedtimelabel" >
+
+        <TextView
+            android:id="@+id/workout_detail_description"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="10dp"
-            android:text="@string/fauxtexte_long"/>
+            android:text="@string/fauxtexte_long" />
     </ScrollView>
 
 </RelativeLayout>
