@@ -36,14 +36,14 @@ public class DBFakeHandler {
 		Workout workout = new Workout();
 		workout.id = 0;
 		workout.name = "Cardio";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = " - Walk for 5 minutes \n\n - Run at 8km/h for 20 minutes \n\n - Stretch for 5 minutes \n\n ";
 		workout.duration = "5 min.";
 		workouts.add(workout);
 		// Workouts 1
 		workout = new Workout();
 		workout.id = 1;
 		workout.name = "Core";
-		workout.description = " - Walk for 5 minutes \n\n - Run at 8km/h for 20 minutes \n\n - Stretch for 5 minutes \n\n ";
+		workout.description = " -Do 20 Sit ups";
 		workout.duration = "5 min.";
 		workouts.add(workout);
 		// Workouts 2
