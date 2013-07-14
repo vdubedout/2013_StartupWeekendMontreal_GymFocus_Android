@@ -6,7 +6,7 @@
     <string name="menulist_workouts">Workouts</string>
     <string name="menulist_schedules">Schedules</string>
     <string name="menulist_messages">Messages</string>
-    <string name="menulist_accounts">Accounts</string>
+    <string name="menulist_accounts">Account</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="fragment_workouts_list_title">Today\'s Workouts list</string>

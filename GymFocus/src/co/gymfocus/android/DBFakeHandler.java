@@ -1,11 +1,16 @@
 package co.gymfocus.android;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
+
+import co.gymfocus.android.GymMessage.Type;
 
 public class DBFakeHandler {
 
 	private static DBFakeHandler mInstance;
 	ArrayList<Workout> mWorkouts;
+	private ArrayList<GymMessage> mGymMessageList;
 
 	private DBFakeHandler() {
 	}
@@ -44,13 +49,10 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 1;
 		workout.name = "Core";
-<<<<<<< HEAD
+
 		workout.description = " - Do 2 sets of  Sit Ups \n\n - do 3 sets of the plank static hold";
 		workout.durationEstimated = "5 min.";
-=======
-		workout.description = " - Do 20 Sit ups";
-		workout.durationEstimated = "10 min.";
->>>>>>> 570ae4ae962ba97551de1aa05069275700f7f476
+
 		workouts.add(workout);
 
 		// Workouts 2
@@ -102,5 +104,32 @@ public class DBFakeHandler {
 		workouts.add(workout);
 
 		return workouts;
+	}
+	
+	public ArrayList<GymMessage> getMessages(){
+		if(mGymMessageList == null)
+			mGymMessageList = createGymMessages();
+		
+		return mGymMessageList;
+	}
+
+	private ArrayList<GymMessage> createGymMessages() {
+		ArrayList<GymMessage> messageList = new ArrayList<GymMessage>();
+		GymMessage message = new GymMessage();
+		message.type = Type.MESSAGE;
+		message.message = "Hey Nicolas, where were you the last 10 days. We miss you.";
+		messageList.add(message);
+		
+		message = new GymMessage();
+		message.type = Type.MESSAGE;
+		message.message = "Hey Nicolas, You have done a nice record this week. Congratz.";
+		messageList.add(message);
+		
+		message = new GymMessage();
+		message.type = Type.BADGE;
+		message.message = "You just won the Human Rocket Badge with your 65km/h sprint";
+		messageList.add(message);
+		
+		return messageList;
 	}
 }

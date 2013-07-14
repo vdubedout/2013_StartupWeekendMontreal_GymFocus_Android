@@ -1,14 +1,22 @@
 package co.gymfocus.android.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import co.gymfocus.android.R;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class FragmentAccount extends SherlockFragment {
+	private View mInflatedView;
+
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onViewCreated(view, savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		mInflatedView = inflater.inflate(R.layout.fragment_account, container, false);
+		return mInflatedView;
 	}
+
 }

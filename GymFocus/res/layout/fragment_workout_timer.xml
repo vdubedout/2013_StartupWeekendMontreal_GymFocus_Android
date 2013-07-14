@@ -3,24 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Chronometer
+    <ImageView
         android:id="@+id/timer_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:format="MM:SS"
-        android:text="00:00"
-        android:textSize="60dp" />
+        android:layout_marginTop="40dp"
+        android:src="@drawable/time_chrono"
+        
+    />
 
     <Button
         android:id="@+id/timer_start_stop"
-        android:layout_width="140dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/timer_value"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:text="start" />
+        android:layout_marginBottom="20dp"
+        android:text="Start Clock" />
 
 </RelativeLayout>
