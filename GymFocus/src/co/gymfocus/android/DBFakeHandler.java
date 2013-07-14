@@ -44,13 +44,8 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 1;
 		workout.name = "Core";
-<<<<<<< HEAD
 		workout.description = " - Do 2 sets of  Sit Ups \n\n - do 3 sets of the plank static hold";
-		workout.durationEstimated = "5 min.";
-=======
-		workout.description = " - Do 20 Sit ups";
 		workout.durationEstimated = "10 min.";
->>>>>>> 570ae4ae962ba97551de1aa05069275700f7f476
 		workouts.add(workout);
 
 		// Workouts 2
