@@ -1,4 +1,4 @@
-package co.gymfocus.android;
+package co.gymfocus.android.fragment;
 
 import com.actionbarsherlock.app.SherlockFragment;
 

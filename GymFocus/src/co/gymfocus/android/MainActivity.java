@@ -12,6 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import co.gymfocus.android.fragment.FragmentAccount;
+import co.gymfocus.android.fragment.FragmentMessages;
+import co.gymfocus.android.fragment.FragmentSchedules;
+import co.gymfocus.android.fragment.FragmentWorkouts;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
@@ -41,6 +46,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	void afterViews() {
 		mMenuList = getResources().getStringArray(R.array.SlideMenu);
 		configureSlideDrawer();
+		selectItem(0);
 		// configureActionBar();
 	}
 

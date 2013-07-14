@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp" >
+
+    <TextView
+        android:id="@+id/workout_detail_exercicelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/green_dark"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="Exercice : " />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/workout_detail_exercicelabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/workout_detail_exercicelabel"
+        android:background="@color/green_dark"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="16 reps" />
+
+    <TextView
+        android:id="@+id/workout_detail_estimatedtimelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/workout_detail_exercicelabel"
+        android:layout_below="@+id/workout_detail_exercicelabel"
+        android:background="@color/green_dark"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:text="Estimated time : " />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/workout_detail_exercicelabel"
+        android:layout_toRightOf="@+id/workout_detail_estimatedtimelabel"
+        android:background="@color/green_dark"
+        android:paddingBottom="10dp"
+        android:text="7 min." />
+
+    <Button 
+        android:id="@+id/workout_detail_startbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Start"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_above="@+id/workout_detail_startbutton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:id="@+id/workout_detail_linear"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <ImageView
+            android:id="@+id/workout_detail_image0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/workout_detail_image1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/workout_detail_image2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/workout_detail_estimatedtimelabel"
+        android:layout_above="@+id/workout_detail_linear"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" >
+        <TextView android:id="@+id/workout_detail_description"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:text="@string/fauxtexte_long"/>
+    </ScrollView>
+
+</RelativeLayout>
