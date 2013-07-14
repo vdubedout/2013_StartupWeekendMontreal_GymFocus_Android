@@ -4,4 +4,8 @@
 	<string name="hello_world">Hello world!</string>
 	<string name="menu_settings">Settings</string>
 
+	<string name="menulist_workouts">Workouts</string>
+	<string name="menulist_schedules">Schedules</string>
+	<string name="menulist_messages">Messages</string>
+	<string name="menulist_accounts">Accounts</string>
 </resources>

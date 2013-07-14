@@ -1,13 +1,20 @@
 package co.gymfocus.android;
 
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.googlecode.androidannotations.annotations.AfterViews;
@@ -23,16 +30,28 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	@ViewById(R.id.left_drawer)
 	ListView mleftDrawerList;
-	
+
+	@ViewById(R.id.drawer_layout)
+	DrawerLayout mDrawerLayout;
+	private ActionBarDrawerToggle mDrawerToggle;
+
 	@AfterViews
 	void afterViews() {
 		mMenuList = getResources().getStringArray(R.array.SlideMenu);
 		configureSlideDrawer();
-//		configureActionBar();
+		// configureActionBar();
 	}
 
 	private void configureSlideDrawer() {
-		mleftDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mMenuList));
+		mleftDrawerList.setAdapter(new ArrayAdapter<String>(this,
+				R.layout.drawer_list_item, mMenuList));
+		mleftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		mDrawerToggle = new ActionBarDrawerToggle(this, 
+				mDrawerLayout, 
+				drawerImageRes, 
+				openDrawerContentDescRes, 
+				closeDrawerContentDescRes);
+		
 	}
 
 	private void configureActionBar() {
@@ -77,5 +96,39 @@ public class MainActivity extends SherlockFragmentActivity implements
 	@Override
 	public void onPageSelected(int arg0) {
 
+	}
+
+	private class DrawerItemClickListener implements
+			ListView.OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			selectItem(position);
+		}
+
+	}
+
+	private void selectItem(int position) {
+		SherlockFragment fragment = getPageFragment(mMenuList[position]);
+		FragmentManager supportFragmentManager = getSupportFragmentManager();
+		supportFragmentManager.beginTransaction()
+				.replace(R.id.content_frame, fragment).commit();
+		mleftDrawerList.setItemChecked(position, true);
+		setTitle(mMenuList[position]);
+		mDrawerLayout.closeDrawer(mleftDrawerList);
+	}
+
+	private SherlockFragment getPageFragment(String menu) {
+		if (menu.equalsIgnoreCase(getString(R.string.menulist_accounts))) {
+			return new FragmentAccount();
+		} else if (menu.equalsIgnoreCase(getString(R.string.menulist_messages))) {
+			return new FragmentMessages();
+		} else if (menu
+				.equalsIgnoreCase(getString(R.string.menulist_schedules))) {
+			return new FragmentSchedules();
+		} else {
+			return new FragmentWorkouts();
+		}
 	}
 }

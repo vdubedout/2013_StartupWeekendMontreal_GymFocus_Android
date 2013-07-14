@@ -8,14 +8,11 @@
         <item>Browser</item>
     </string-array>
     <string-array name="SlideMenu">
-        <item>Home</item>
-        <item>Schedules</item>
-        <item>Workouts</item>
-        <item>Messages</item>
+        <item>@string/menulist_workouts</item>
+        <item>@string/menulist_schedules</item>
+        <item>@string/menulist_messages</item>
+        <item>@string/menulist_accounts</item>
     </string-array>
-    
-    <string-array name="WorkoutType">
-        
-    </string-array>
+    <string-array name="WorkoutType"></string-array>
 
 </resources>

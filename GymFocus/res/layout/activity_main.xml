@@ -5,10 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <!-- The main content view -->
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+    <FrameLayout
+        android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center" />
