@@ -15,6 +15,8 @@ public class FragmentWorkoutTimer extends SherlockFragment {
 
 	private Workout mWorkout;
 	private View mInflatedView;
+	Button mButton;
+	private boolean isStartAlreadyClicked = false;
 
 	public void setWorkout(Workout workout) {
 		this.mWorkout = workout;
@@ -24,12 +26,18 @@ public class FragmentWorkoutTimer extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		mInflatedView = inflater.inflate(R.layout.fragment_workout_timer, container, false);
-		Button mButton = (Button) mInflatedView.findViewById(R.id.timer_start_stop);
+		mButton = (Button) mInflatedView.findViewById(R.id.timer_start_stop);
 		mButton.setOnClickListener(new OnClickListener() {
 			
+
 			@Override
 			public void onClick(View v) {
-				
+				if(isStartAlreadyClicked){
+					startButtonClicked();
+				} else {
+					isStartAlreadyClicked = true;
+					mButton.setText(getString(R.string.timer_endsession));
+				}
 				
 			}
 		});

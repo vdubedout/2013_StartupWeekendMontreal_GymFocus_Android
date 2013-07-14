@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <View
+        android:id="@+id/rapport_center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/rapport_good"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@+id/rapport_center"
+        android:src="@drawable/results_good_normal"
+        android:layout_marginRight="5dp" />
+
+    <ImageView
+        android:id="@+id/rapport_bad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/rapport_center"
+        android:src="@drawable/results_bad_normal" />
+
+    <ImageView
+        android:id="@+id/rapport_comment_haut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rapport_bad"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/rapport_comments_haut" />
+
+    <EditText
+        android:id="@+id/rapport_commentuser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/rapport_comment_haut"
+        android:layout_alignRight="@+id/rapport_comment_haut"
+        android:layout_below="@+id/rapport_comment_haut"
+        android:background="@drawable/rapport_comments_bas"
+        android:gravity="top|left"
+        android:padding="2dp" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rapport_commentuser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Next" />
+
+</RelativeLayout>
