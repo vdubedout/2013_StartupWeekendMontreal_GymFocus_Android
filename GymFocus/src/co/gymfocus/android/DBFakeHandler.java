@@ -44,7 +44,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 1;
 		workout.name = "Core";
-		workout.description = " - Do 20 Sit ups";
+		workout.description = " - Do 2 sets of  Sit Ups \n\n - do 3 sets of the plank static hold";
 		workout.durationEstimated = "5 min.";
 		workouts.add(workout);
 
@@ -52,7 +52,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 2;
 		workout.name = "Lower Body";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = " - 3 sets of squats \n\n - 3 sets of leg press";
 		workout.durationEstimated = "5 min.";
 		workouts.add(workout);
 
@@ -60,7 +60,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 3;
 		workout.name = "Chest";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = " - 3 sets of barbench press \n\n - 3 sets of pushups \n\n - 3 sets of cable flies";
 		workout.durationEstimated = "5 min.";
 		workouts.add(workout);
 
@@ -68,7 +68,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 4;
 		workout.name = "Shoulders";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = " - 3 sets of barbell shoulder press \n\n - 3 sets of arnold shoulder press \n\n - 3 sets of alternating cable shoulder press";
 		workout.durationEstimated = "5 min";
 		workouts.add(workout);
 
@@ -76,7 +76,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 5;
 		workout.name = "Back";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = " - 3 sets of Lat Pull Downs \n\n - 3 sets of either dumbbell rows or pullups ";
 		workout.durationEstimated = "5 min.";
 		workouts.add(workout);
 
@@ -84,7 +84,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 6;
 		workout.name = "Arms";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = " - 3 sets of dumbbell curlls \n\n - 3 sets of skullcrushers";
 		workout.durationEstimated = "5 min.";
 		workouts.add(workout);
 
@@ -92,7 +92,7 @@ public class DBFakeHandler {
 		workout = new Workout();
 		workout.id = 7;
 		workout.name = "Stretches";
-		workout.description = "You have to do a squat like this blalalalalalalalala";
+		workout.description = "- stretch your shoulders \n\n - stretch your hamstrings \n\n - stretch your calves \n\n - stretch your quadriceps";
 		workout.durationEstimated = "5 min.";
 		workouts.add(workout);
 
