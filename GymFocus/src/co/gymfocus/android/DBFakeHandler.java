@@ -42,16 +42,15 @@ public class DBFakeHandler {
 		workout.id = 0;
 		workout.name = "Cardio";
 		workout.description = " - Walk for 5 minutes \n\n - Run at 8km/h for 20 minutes \n\n - Stretch for 5 minutes \n\n ";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "10 min.";
 		workouts.add(workout);
 
 		// Workouts 1
 		workout = new Workout();
 		workout.id = 1;
 		workout.name = "Core";
-
 		workout.description = " - Do 2 sets of  Sit Ups \n\n - do 3 sets of the plank static hold";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "7 min.";
 
 		workouts.add(workout);
 
@@ -60,7 +59,7 @@ public class DBFakeHandler {
 		workout.id = 2;
 		workout.name = "Lower Body";
 		workout.description = " - 3 sets of squats \n\n - 3 sets of leg press";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "15 min.";
 		workouts.add(workout);
 
 		// Workouts 3
@@ -68,7 +67,7 @@ public class DBFakeHandler {
 		workout.id = 3;
 		workout.name = "Chest";
 		workout.description = " - 3 sets of barbench press \n\n - 3 sets of pushups \n\n - 3 sets of cable flies";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "22 min.";
 		workouts.add(workout);
 
 		// Workouts 4
@@ -76,7 +75,7 @@ public class DBFakeHandler {
 		workout.id = 4;
 		workout.name = "Shoulders";
 		workout.description = " - 3 sets of barbell shoulder press \n\n - 3 sets of arnold shoulder press \n\n - 3 sets of alternating cable shoulder press";
-		workout.durationEstimated = "5 min";
+		workout.durationEstimated = "3 min.";
 		workouts.add(workout);
 
 		// Workouts 5
@@ -84,7 +83,7 @@ public class DBFakeHandler {
 		workout.id = 5;
 		workout.name = "Back";
 		workout.description = " - 3 sets of Lat Pull Downs \n\n - 3 sets of either dumbbell rows or pullups ";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "52 min.";
 		workouts.add(workout);
 
 		// Workouts 6
@@ -100,7 +99,7 @@ public class DBFakeHandler {
 		workout.id = 7;
 		workout.name = "Stretches";
 		workout.description = "- stretch your shoulders \n\n - stretch your hamstrings \n\n - stretch your calves \n\n - stretch your quadriceps";
-		workout.durationEstimated = "5 min.";
+		workout.durationEstimated = "13 min.";
 		workouts.add(workout);
 
 		return workouts;
@@ -118,16 +117,19 @@ public class DBFakeHandler {
 		GymMessage message = new GymMessage();
 		message.type = Type.MESSAGE;
 		message.message = "Hey Nicolas, where were you the last 10 days. We miss you.";
+		message.timestamp = 10;
 		messageList.add(message);
 		
 		message = new GymMessage();
 		message.type = Type.MESSAGE;
 		message.message = "Hey Nicolas, You have done a nice record this week. Congratz.";
+		message.timestamp = 6;
 		messageList.add(message);
 		
 		message = new GymMessage();
 		message.type = Type.BADGE;
 		message.message = "You just won the Human Rocket Badge with your 65km/h sprint";
+		message.timestamp = 3;
 		messageList.add(message);
 		
 		return messageList;

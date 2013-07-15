@@ -1,17 +1,21 @@
 package co.gymfocus.android;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import co.gymfocus.android.fragment.FragmentAccount;
 import co.gymfocus.android.fragment.FragmentMessages;
 import co.gymfocus.android.fragment.FragmentSchedules;
@@ -131,11 +135,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private SherlockFragment getPageFragment(String menu) {
 		if (menu.equalsIgnoreCase(getString(R.string.menulist_accounts))) {
+			notification("GymFocus", "Hi, You have a Workout to do");
 			return new FragmentAccount();
 		} else if (menu.equalsIgnoreCase(getString(R.string.menulist_messages))) {
 			return new FragmentMessages();
 		} else if (menu
 				.equalsIgnoreCase(getString(R.string.menulist_schedules))) {
+			notification("GymFocus", "Hi, You have a Workout to do");
 			return new FragmentSchedules();
 		} else {
 			return new FragmentWorkouts();
@@ -166,9 +172,25 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 			return true;
 		}
-		
+
 		return super.onOptionsItemSelected(item);
 
 	}
 
+	public void notification(String title, String message) {
+
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+				this).setSmallIcon(R.drawable.ic_launcher) // change icon
+				.setContentTitle(title).setContentText(message);
+		Intent resultIntent = new Intent(this, MainActivity.class); // change
+																	// activity
+																	// to load
+		PendingIntent pendingIntent;
+		pendingIntent = PendingIntent.getActivity(this, 0, resultIntent,
+				PendingIntent.FLAG_UPDATE_CURRENT);
+
+		mBuilder.setContentIntent(pendingIntent);
+		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.notify(0, mBuilder.build());
+	}
 }

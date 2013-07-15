@@ -49,11 +49,12 @@
 
     <Button
         android:id="@+id/rapport_sendbutton"
-        android:layout_width="80dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rapport_commentuser"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:text="Send" />
 
 </RelativeLayout>

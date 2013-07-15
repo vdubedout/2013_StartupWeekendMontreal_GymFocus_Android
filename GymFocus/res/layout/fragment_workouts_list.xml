@@ -4,15 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!--
-         <TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:text="@string/fragment_workouts_list_title"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="14dp"
-        android:padding="5dp" />
-    -->
+        android:textColor="@color/green_dark"
+        android:textSize="22dp" />
 
     <ListView
         android:id="@android:id/list"

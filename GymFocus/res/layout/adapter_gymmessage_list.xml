@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp" >
+
+    <TextView
+        android:id="@+id/adapter_workout_name"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:textSize="17dp"
+        android:text="Badge"
+         />
+    
+    <TextView
+        android:id="@+id/adapter_workout_duration"
+        android:layout_width="match_parent"
+        android:textSize="17dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:text="RastaRocket plus vite que la lumiere du soleil"
+        android:gravity="center_vertical" />
+    
+</LinearLayout>

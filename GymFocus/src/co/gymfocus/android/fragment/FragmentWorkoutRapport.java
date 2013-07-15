@@ -135,7 +135,7 @@ public class FragmentWorkoutRapport extends SherlockFragment implements
 								+ URLEncoder.encode(mWorkout.workoutComment,
 										"UTF-8");
 					if (!TextUtils.isEmpty(String.valueOf(mWorkout.likedIt)))
-						param += "&likeedit="
+						param += "&likedit="
 								+ URLEncoder.encode(
 										String.valueOf(mWorkout.likedIt),
 										"UTF-8");

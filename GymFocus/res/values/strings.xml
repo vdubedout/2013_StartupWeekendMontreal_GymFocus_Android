@@ -18,6 +18,6 @@
     <string name="workoutstate_done">Done</string>
     <string name="workoutstate_todo">To do</string>
     <string name="service_post_label">Service Workout Post Service</string>
-    <string name="serverpath">http://gymfocus.co/api/</string>
+    <string name="serverpath">http://app.gymfocus.co/api/</string>
 
 </resources>

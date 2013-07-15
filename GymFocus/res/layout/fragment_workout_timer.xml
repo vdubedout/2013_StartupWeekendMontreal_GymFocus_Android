@@ -9,9 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/time_chrono"
-        
     />
 
     <Button

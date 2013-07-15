@@ -1,13 +1,14 @@
 package co.gymfocus.android;
 
 public class GymMessage {
-	enum Type{
+	public enum Type{
 		MESSAGE,
 		BADGE
 	}
 	
-	Type type;
-	String message;
+	public Type type;
+	public String message;
+	public long timestamp;
 
 	public GymMessage() {
 	}
